@@ -14,15 +14,7 @@ class AIController extends Controller
         $request->validate(['title' => 'required|string']);
         $title = $request->title;
         $subject = $request->subject ?? 'عام';
-
-        $prep = "الصف: $subject\nالموضوع: $title\n"
-            . "الأهداف: يتعرف الطالب على مفاهيم $title ويطبقها\n"
-            . "وسائل التعلم: السبورة، بطاقات تعليمية\n"
-            . "المقدمة: سؤال تحفيزي حول $title\n"
-            . "العرض: شرح الدرس بخطوات مع أمثلة\n"
-            . "التطبيق: أنشطة صفية\n"
-            . "التقويم: أسئلة شفهية\n"
-            . "الواجب: حل واجب قصير\n";
+        $prep = (new \App\Services\AIService)->generateLessonPrep($title, $subject);
 
         return response()->json(['title' => $title, 'subject' => $subject, 'preparation' => $prep]);
     }
