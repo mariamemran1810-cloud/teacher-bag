@@ -20,6 +20,7 @@ Route::get('/messages', [WebController::class, 'messages']);
 Route::post('/messages', [WebController::class, 'storeMessage']);
 Route::get('/chat', [WebController::class, 'chat']);
 Route::post('/chat', [WebController::class, 'postChat']);
+Route::get('/teacher-cv', function () { return view('teacher-cv'); });
 });
 Route::get('/login', [\App\Http\Controllers\AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
